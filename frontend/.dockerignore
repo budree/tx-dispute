@@ -1,0 +1,10 @@
+**/.git
+**/.idea
+**/.vscode
+**/node_modules
+**/dist
+**/build
+**/target
+**/.DS_Store
+**/npm-debug.log
+**/yarn-error.log
