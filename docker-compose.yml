@@ -7,8 +7,6 @@ services:
     environment:
       # === App configuration ===
       APP_JWT_SECRET: "6a3d5f0b9c1e2a4c6e8f1029384756aa6b7c8d9e0f1a2b3c4d5e6f708192a3bc" # 32+ bytes
-      APP_SEED_ENABLED: "true"          # seed demo users + transactions
-      APP_SWAGGER_BYPASS: "true"        # you enabled Option B earlier
       # === Spring/H2 ===
       SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
       # Optional: turn on H2 console
@@ -40,6 +38,7 @@ services:
       - "8082:80"
     depends_on:
       - backend
+
 
 
 
