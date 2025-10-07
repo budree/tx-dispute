@@ -163,15 +163,18 @@ tx-dispute/
 
 ## API Overview
 ** Auth
-POST /api/auth/login → { token }
-GET /api/auth/me → { id, username, role } (Bearer required)
+- POST /api/auth/login → { token }
+- GET /api/auth/me → { id, username, role } (Bearer required)
+  
 ** Transactions
-GET /api/v1/transactions → list (admin: all; client: own)
-GET /api/v1/transactions/{id} → get (scoped)
+- GET /api/v1/transactions → list (admin: all; client: own)
+- GET /api/v1/transactions/{id} → get (scoped)
+  
 ** Disputes
-GET /api/v1/disputes → list (admin: all; client: own)
-GET /api/v1/disputes/{id} → show (scoped)
-POST /api/v1/disputes → create (client/admin)
-POST /api/v1/disputes/{id}:advance → admin-only; validates legal transitions
+- GET /api/v1/disputes → list (admin: all; client: own)
+- GET /api/v1/disputes/{id} → show (scoped)
+- POST /api/v1/disputes → create (client/admin)
+- POST /api/v1/disputes/{id}:advance → admin-only; validates legal transitions
+  
 ** Users (admin only)
-GET /api/v1/users … (if exposed)
+- GET /api/v1/users … (if exposed)
