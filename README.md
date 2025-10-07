@@ -11,9 +11,6 @@ Demo of a Transaction Dispute system featuring a backend microservice layer and 
 - [Repo Structure](#repo-structure)
 - [Domain & Security](#domain--security)
 - [API Overview](#api-overview)
-- [Frontend Features](#frontend-features)
-- [Testing](#testing)
-- [Troubleshooting](#troubleshooting)
 - [Future Enhancements](#future-enhancements)
 
 ---
