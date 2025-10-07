@@ -10,15 +10,32 @@ A compact, production-style **transaction & dispute** system you can run locally
 - [Tech Stack](#tech-stack)
 - [Repo Structure](#repo-structure)
 - [Domain & Security](#domain--security)
-- [Build & Run (Docker)](#build--run-docker)
-- [Build & Run (Local Dev)](#build--run-local-dev)
-- [Configuration](#configuration)
+
 - [API Overview](#api-overview)
 - [Frontend Features](#frontend-features)
 - [Testing](#testing)
 - [Troubleshooting](#troubleshooting)
 - [Future Enhancements](#future-enhancements)
 - [Demo Credentials](#demo-credentials)
+
+---
+
+## Quick Start (Docker)
+
+**Prereqs**: Docker & Docker Compose.
+
+1) Copy env template and set a strong secret:
+```bash
+cp .env.example .env
+# edit .env and set APP_JWT_SECRET to a long random string (>= 32 bytes)
+```
+2) Build & run:
+docker compose build
+docker compose up -d
+
+3) Open:
+Frontend (SPA): http://localhost:8082
+API / Swagger: http://localhost:8081/swagger-ui/index.html
 
 ---
 
@@ -144,24 +161,17 @@ tx-dispute/
 
 ---
 
-## Build & Run (Docker)
-
-**Prereqs**: Docker & Docker Compose.
-
-1) Copy env template and set a strong secret:
-```bash
-cp .env.example .env
-# edit .env and set APP_JWT_SECRET to a long random string (>= 32 bytes)
-```
-
-2) Build & run:
-
-docker compose build
-docker compose up -d
-
-
-3) Open:
-
-Frontend (SPA): http://localhost:8082
-API / Swagger: http://localhost:8081/swagger-ui/index.html
-
+## API Overview
+** Auth
+POST /api/auth/login → { token }
+GET /api/auth/me → { id, username, role } (Bearer required)
+** Transactions
+GET /api/v1/transactions → list (admin: all; client: own)
+GET /api/v1/transactions/{id} → get (scoped)
+** Disputes
+GET /api/v1/disputes → list (admin: all; client: own)
+GET /api/v1/disputes/{id} → show (scoped)
+POST /api/v1/disputes → create (client/admin)
+POST /api/v1/disputes/{id}:advance → admin-only; validates legal transitions
+** Users (admin only)
+GET /api/v1/users … (if exposed)
