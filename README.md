@@ -25,14 +25,22 @@ A compact, production-style **transaction & dispute** system you can run locally
 **Prereqs**: Docker & Docker Compose.
 
 1) Build & run:
-docker compose build
-docker compose up -d
+- docker compose build
+- docker compose up -d
 
 2) Open:
-Frontend (SPA): http://localhost:8082
-API / Swagger: http://localhost:8081/swagger-ui/index.html
+- Frontend (SPA): http://localhost:8082
+- API / Swagger: http://localhost:8081/swagger-ui/index.html
 
-3) Demo Login Credentials
+3) Demo Login Credentials:
+- admin / admin1234
+- client / client1234
+- client01 / client1234
+- client02 / client1234
+.
+.
+.
+- client10 / client1234
 
 ---
 
