@@ -37,9 +37,9 @@ A compact, production-style **transaction & dispute** system you can run locally
 - client / client1234
 - client01 / client1234
 - client02 / client1234
-.
-.
-.
+.<br/>
+.<br/>
+.<br/>
 - client10 / client1234
 
 ---
