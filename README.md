@@ -24,6 +24,7 @@ A compact, production-style **transaction & dispute** system you can run locally
 
 ## Architecture
 
+```
 ┌──────────────────────────┐        HTTP/JSON        ┌──────────────────────────┐
 │  React-Admin SPA         │  ───────────────────▶   │  Spring Boot API         │
 │  (Vite + Nginx)          │   /api/v1/*, /auth/*    │  (WebMVC, Security, JPA) │
@@ -36,4 +37,4 @@ A compact, production-style **transaction & dispute** system you can run locally
             ▲                                                       │
             │ Swagger UI (for testing)                              │
             └───────────────────────────────────────────────────────┘
-
+```
