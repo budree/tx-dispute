@@ -76,3 +76,39 @@ A compact, production-style **transaction & dispute** system you can run locally
 
 ## Repo Structure
 
+```
+tx-dispute/
+├─ backend/ # Spring Boot app
+│ ├─ src/main/java/com/example/txd/
+│ │ ├─ TransactionDisputeApplication.java
+│ │ ├─ config/ # SecurityConfig, Cors, DemoSeeder, Swagger bypass chain
+│ │ ├─ controller/api/ # AuthApi, TransactionsApi, DisputesApi, UsersApi
+│ │ ├─ dto/ # Request/Response DTOs
+│ │ ├─ model/ # JPA: AppUser, Transaction, Dispute, etc.
+│ │ ├─ repository/ # Spring Data repositories
+│ │ ├─ security/ # Sec helper (extract role/userId)
+│ │ └─ service/ # Business logic (scoping, transitions)
+│ ├─ src/main/resources/application.yml
+│ ├─ src/test/java/... # Unit & slice tests
+│ └─ Dockerfile
+│
+├─ frontend/ # React-Admin Single Page Application (SPA)
+│ ├─ src/
+│ │ ├─ App.tsx # <Admin> + <Resource>s (Transactions, Disputes, Users)
+│ │ ├─ authProvider.ts # login/me, 401/403 handling
+│ │ ├─ dataProvider.ts # fetchJson + Authorization header + client filters
+│ │ ├─ transactions.tsx # List + “Create/View Dispute” modals
+│ │ ├─ disputes.tsx # List + Show + filters + Advance buttons
+│ │ ├─ disputes/DisputeAdvanceButton.tsx
+│ │ ├─ dateLocale.ts # international date formatting
+│ │ ├─ ui.ts # shared MUI styles (e.g., pink hover)
+│ │ └─ types.ts # shared TS types
+│ ├─ Dockerfile
+│ └─ nginx.conf
+│
+├─ docker-compose.yml # spins up both services
+├─ .env.example # sample env vars for compose
+├─ .gitignore / .gitattributes
+└─ README.md
+
+```
