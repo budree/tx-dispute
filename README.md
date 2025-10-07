@@ -2,6 +2,8 @@
 
 Demo of a Transaction Dispute system featuring a backend microservice layer and a frontend Vite/React Admin single page application (SPA)
 
+![Alt Text](./ScreencastDemo.gif)
+
 ---
 
 ## Table of Contents
