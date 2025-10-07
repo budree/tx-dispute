@@ -26,10 +26,10 @@ A compact, production-style **transaction & dispute** system you can run locally
 
 ```
 ┌──────────────────────────┐        HTTP/JSON        ┌──────────────────────────┐
-│  React-Admin SPA         │  ───────────────────▶   │  Spring Boot API        │
+│  React-Admin SPA         │  ───────────────────▶  │  Spring Boot API         │
 │  (Vite + Nginx)          │   /api/v1/*, /auth/*    │  (WebMVC, Security, JPA) │
 │                          │                         │                          │
-│  - Auth form (JWT)       │   ◀──────────────────   │  - JWT login (/auth)    │
+│  - Auth form (JWT)       │   ◀──────────────────  │  - JWT login (/auth)     │
 │  - Transactions (client) │       JSON responses    │  - Transactions,         │
 │  - Disputes (admin)      │                         │    Disputes, Users       │
 │  - Filters, modals       │                         │  - H2 in-memory DB       │
