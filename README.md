@@ -190,13 +190,11 @@ tx-dispute/
 
 - **Database & Schema**
   - Move from H2 → **PostgreSQL** (via Docker Compose service & volume).
-  - **Flyway** migrations (replace `ddl-auto`) with repeatable seeds.
   - Use **UUID primary keys**, add indexes/uniques (e.g., `transaction.reference`).
   - Add soft-delete/audit columns (`created_by`, `updated_by`, `deleted_at`).
 
 - **API & Backend**
   - **Server-side pagination/sorting/filtering** (Spring Data `Pageable`, JPA Specifications).
-  - Consistent error model (**RFC 7807 Problem+JSON**), exception mappers.
   - **Rate limiting** (Bucket4j) and request **idempotency keys** for POST.
   - Caching layers (Spring Cache + **Redis**) for read-heavy queries.
   - **Validation groups** & richer constraints for create vs. update.
@@ -205,17 +203,15 @@ tx-dispute/
 - **Auth & Security**
   - **Short-lived access tokens** + **refresh tokens** (rotation, revocation list).
   - Harden password policy, account lockout, 2FA option.
-  - Fine-grained **method security** (`@PreAuthorize` expressions).
   - SSO (**OAuth2/OpenID Connect**) for admin users.
-  - Production **CSP/security headers** & CSRF strategy for non-API endpoints.
 
 - **Observability & Ops**
   - **OpenTelemetry** tracing; ship traces/logs to a collector.
   - **Prometheus** metrics + **Grafana** dashboards (HTTP, DB, JVM).
   - Structured JSON logging with correlation IDs.
-  - Health/readiness probes; **Kubernetes** manifests or **Helm** chart.
+  - Health/readiness probes; **Kubernetes** manifests
 
-- **DevX & CI/CD**
+- **CI/CD**
   - GitHub Actions: build, test, **Testcontainers** integration tests, image publish.
   - Static analysis (**Checkstyle/SpotBugs**), dependency audits, Dependabot.
   - Multi-stage, multi-arch Docker builds; image signing (Sigstore/Cosign).
@@ -223,9 +219,8 @@ tx-dispute/
 - **Frontend (React-Admin)**
   - Switch lists to **server-driven** pagination & filters (consistent totals).
   - **i18n** (react-admin polyglot) & a11y improvements; dark theme.
-  - **Optimistic UI**, skeleton loaders, error boundaries.
   - E2E tests (Playwright/Cypress) + unit tests (RTL/Jest).
-  - File uploads (attachments on disputes), CSV export.
+  - File uploads (attachments on disputes)
 
 - **Features & UX**
   - Dispute **comments & attachments**; internal vs. external notes.
