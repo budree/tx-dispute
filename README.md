@@ -38,3 +38,41 @@ A compact, production-style **transaction & dispute** system you can run locally
             │ Swagger UI (for testing)                              │
             └───────────────────────────────────────────────────────┘
 ```
+
+
+**Roles & behavior**
+- **CLIENT**: sees only *their* Transactions and Disputes.
+- **ADMIN**: sees Disputes (with user column) and Users.
+- **Dispute flow**: `OPEN → UNDER_REVIEW → (RESOLVED | REJECTED)`; admin advances status.
+- **JWT**: HS256 with `role` and `userId` claims.
+- **CORS**: configured for the SPA origin.
+- **Swagger bypass (optional)**: allow unauthenticated “Try it out” *only when* called from Swagger UI (by `Referer`).
+
+---
+
+## Tech Stack
+
+**Backend**
+- Spring Boot 3 (WebMVC, Security, Validation)
+- Spring Data JPA (Hibernate), H2 (in-memory dev DB)
+- JWT via `NimbusJwtEncoder/Decoder` (HS256)
+- springdoc-openapi (Swagger UI)
+- (Optional) Actuator (health/info)
+
+**Frontend**
+- React-Admin (Material UI) on Vite
+- Client-side filtering/sorting/pagination
+- MUI Dialog modals for dispute creation & status timeline
+- Nginx for static hosting; optional `/api` reverse-proxy
+
+**Testing**
+- JUnit 5, Mockito, spring-security-test
+- `@WebMvcTest` (controllers), `@DataJpaTest` (repositories), service unit tests
+
+**Packaging**
+- Docker (multi-stage images) & Docker Compose
+
+---
+
+## Repo Structure
+
