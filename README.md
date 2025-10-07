@@ -1,6 +1,6 @@
-# Transaction Dispute Demo — Spring Boot API + React-Admin SPA
+# Transaction Dispute Demo — Spring Boot API + Vite/React-Admin SPA
 
-A compact, production-style **transaction & dispute** system you can run locally with **Docker** or in dev mode. It demonstrates clean API design, role-based access control, pragmatic JWT auth, and a React-Admin front-end.
+Demo of a Transaction Dispute system featuring a backend microservice layer and a frontend Vite/React Admin single page application (SPA)
 
 ---
 
@@ -10,19 +10,22 @@ A compact, production-style **transaction & dispute** system you can run locally
 - [Tech Stack](#tech-stack)
 - [Repo Structure](#repo-structure)
 - [Domain & Security](#domain--security)
-
 - [API Overview](#api-overview)
 - [Frontend Features](#frontend-features)
 - [Testing](#testing)
 - [Troubleshooting](#troubleshooting)
 - [Future Enhancements](#future-enhancements)
-- [Demo Credentials](#demo-credentials)
 
 ---
 
 ## Quick Start (Docker)
 
 **Prereqs**: Docker & Docker Compose.
+
+**Known Issues**
+- SSL has not been enabled for demo purposes.
+- The delete record button needs to be removed but has not for demo purposes.
+- The Swagger UI purposely avoids security for demo purposes.
 
 1) Build & run:
 - docker compose build
@@ -36,7 +39,7 @@ A compact, production-style **transaction & dispute** system you can run locally
 - admin / admin1234
 - client / client1234
 - client01 / client1234
-- client02 / client1234
+- client02 / client1234<br/>
 .<br/>
 .<br/>
 .<br/>
@@ -79,13 +82,12 @@ A compact, production-style **transaction & dispute** system you can run locally
 - Spring Data JPA (Hibernate), H2 (in-memory dev DB)
 - JWT via `NimbusJwtEncoder/Decoder` (HS256)
 - springdoc-openapi (Swagger UI)
-- (Optional) Actuator (health/info)
 
 **Frontend**
 - React-Admin (Material UI) on Vite
 - Client-side filtering/sorting/pagination
 - MUI Dialog modals for dispute creation & status timeline
-- Nginx for static hosting; optional `/api` reverse-proxy
+- Nginx for static hosting
 
 **Testing**
 - JUnit 5, Mockito, spring-security-test
@@ -110,8 +112,8 @@ tx-dispute/
 │ │ ├─ repository/ # Spring Data repositories
 │ │ ├─ security/ # Sec helper (extract role/userId)
 │ │ └─ service/ # Business logic (scoping, transitions)
-│ ├─ src/main/resources/application.yml
-│ ├─ src/test/java/... # Unit & slice tests
+│ ├─ src/main/resources/application.yml  # Config file
+│ ├─ src/test/java/... # Unit tests
 │ └─ Dockerfile
 │
 ├─ frontend/ # React-Admin Single Page Application (SPA)
@@ -123,7 +125,7 @@ tx-dispute/
 │ │ ├─ disputes.tsx # List + Show + filters + Advance buttons
 │ │ ├─ disputes/DisputeAdvanceButton.tsx
 │ │ ├─ dateLocale.ts # international date formatting
-│ │ ├─ ui.ts # shared MUI styles (e.g., pink hover)
+│ │ ├─ ui.ts # shared MUI styles 
 │ │ └─ types.ts # shared TS types
 │ ├─ Dockerfile
 │ └─ nginx.conf
@@ -182,7 +184,7 @@ tx-dispute/
 - POST /api/v1/disputes/{id}:advance → admin-only; validates legal transitions
   
 **Users (admin only)**
-- GET /api/v1/users … (if exposed)
+- GET /api/v1/users
 
 ## Future Enhancements
 
@@ -202,7 +204,7 @@ tx-dispute/
 
 - **Auth & Security**
   - **Short-lived access tokens** + **refresh tokens** (rotation, revocation list).
-  - Harden password policy, account lockout, 2FA (TOTP) option.
+  - Harden password policy, account lockout, 2FA option.
   - Fine-grained **method security** (`@PreAuthorize` expressions).
   - SSO (**OAuth2/OpenID Connect**) for admin users.
   - Production **CSP/security headers** & CSRF strategy for non-API endpoints.
