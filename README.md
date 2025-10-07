@@ -112,3 +112,56 @@ tx-dispute/
 └─ README.md
 
 ```
+
+## Domain & Security
+
+**Entities**
+- `AppUser { id, username, passwordHash, role }`
+- `Transaction { id, reference, amount, currency, description, createdAt, user }`
+- `Dispute { id, transactionRef, reason, status, openedAt, underReviewAt, resolvedAt, rejectedAt, updatedAt, user }`
+
+**Repositories**
+- `TransactionRepository`: `findByUser_Id`, `findByReference`
+- `DisputeRepository`: user-scoped queries
+
+**Services**
+- **Scoping**:  
+  `ADMIN` → `findAll()`; otherwise current user → `findByUser_Id(Sec.userId())`.
+- **Transitions**: validate legal moves; set timestamps; `409` on invalid transitions.
+
+**SecurityConfig**
+- Resource server (JWT) for `/api/**`
+- `permitAll`: `/api/auth/**`, `/v3/api-docs/**`, `/swagger-ui/**`
+- CORS enabled + configured via `app.cors.*`
+- **Swagger bypass** chain (optional): permits `/api/**` **only** when `Referer` contains `/swagger-ui` (review convenience).
+
+**Seeder (`DemoSeeder`)**
+- Controlled by `app.seed.enabled=true`
+- Adds:
+  - `admin / admin1234` (ADMIN)
+  - `client / client1234` (CLIENT)
+  - Sample transactions for the client
+
+---
+
+## Build & Run (Docker)
+
+**Prereqs**: Docker & Docker Compose.
+
+1) Copy env template and set a strong secret:
+```bash
+cp .env.example .env
+# edit .env and set APP_JWT_SECRET to a long random string (>= 32 bytes)
+```
+
+2) Build & run:
+
+docker compose build
+docker compose up -d
+
+
+3) Open:
+
+Frontend (SPA): http://localhost:8082
+API / Swagger: http://localhost:8081/swagger-ui/index.html
+
