@@ -159,13 +159,6 @@ tx-dispute/
 - CORS enabled + configured via `app.cors.*`
 - **Swagger bypass** chain (optional): permits `/api/**` **only** when `Referer` contains `/swagger-ui` (review convenience).
 
-**Seeder (`DemoSeeder`)**
-- Controlled by `app.seed.enabled=true`
-- Adds:
-  - `admin / admin1234` (ADMIN)
-  - `client / client1234` (CLIENT)
-  - Sample transactions for the client
-
 ---
 
 ## API Overview
