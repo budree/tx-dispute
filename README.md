@@ -24,18 +24,15 @@ A compact, production-style **transaction & dispute** system you can run locally
 
 **Prereqs**: Docker & Docker Compose.
 
-1) Copy env template and set a strong secret:
-```bash
-cp .env.example .env
-# edit .env and set APP_JWT_SECRET to a long random string (>= 32 bytes)
-```
-2) Build & run:
+1) Build & run:
 docker compose build
 docker compose up -d
 
-3) Open:
+2) Open:
 Frontend (SPA): http://localhost:8082
 API / Swagger: http://localhost:8081/swagger-ui/index.html
+
+3) Demo Login Credentials
 
 ---
 
